@@ -1,0 +1,99 @@
+package frontend
+
+import "github.com/belgasemxd/dynamicProduct/backend/model"
+
+templ Inputs(columns []model.TableColumn) {
+    <form id="inputsForm" hx-post="/save" hx-target="#content" hx-swap="innerHTML">
+    <section class="input-section">
+        for _, col := range columns {
+            <div class="input-group">
+                <label for={col.Name}>{col.Label}</label>
+                if col.Type == "number" {
+                    <input
+                        id={col.Name}
+                        type="number"
+                        name={col.Name}
+                        title={col.Description}>
+                } else if col.Type == "date" {
+                    <input
+                        id={col.Name}
+                        type="date"
+                        name={col.Name}
+                        title={col.Description}>
+                } else if col.Type == "dropdown" && col.Options != nil {
+                    <select id={col.Name} name={col.Name} title={col.Description}>
+                        for _, opt := range col.Options {
+                            <option value={opt}>{opt}</option>
+                        }
+                    </select>
+                } else if col.Type == "boolean" {
+                    <select id={col.Name} name={col.Name} title={col.Description}>
+                        <option value="true">true</option>
+                        <option value="false">false</option>
+                    </select>
+                } else {
+                    <input
+                        id={col.Name}
+                        type="text"
+                        name={col.Name}
+                        title={col.Description}>
+                }
+            </div>
+        }
+    </section>
+    </form>
+}
+
+templ InputsWithValues(columns []model.TableColumn, row map[string]string) {
+    <form id="inputsForm" hx-post="/save" hx-target="#content" hx-swap="innerHTML">
+    <section class="input-section">
+        for _, col := range columns {
+            <div class="input-group">
+                <label for={col.Name}>{col.Label}</label>
+                if col.Type == "number" {
+                    <input
+                        id={col.Name}
+                        type="number"
+                        name={col.Name}
+                        value={row[col.Name]}
+                        title={col.Description}>
+                } else if col.Type == "date" {
+                    <input
+                        id={col.Name}
+                        type="date"
+                        name={col.Name}
+                        value={row[col.Name]}
+                        title={col.Description}>
+                } else if col.Type == "dropdown" && col.Options != nil {
+                    <select id={col.Name} name={col.Name} title={col.Description}>
+                        for _, opt := range col.Options {
+                            if opt == row[col.Name] {
+                                <option value={opt} selected>{opt}</option>
+                            } else {
+                                <option value={opt}>{opt}</option>
+                            }
+                        }
+                    </select>
+                } else if col.Type == "boolean" {
+                    <select id={col.Name} name={col.Name} title={col.Description}>
+                        if row[col.Name] == "true" {
+                            <option value="true" selected>true</option>
+                            <option value="false">false</option>
+                        } else {
+                            <option value="true">true</option>
+                            <option value="false" selected>false</option>
+                        }
+                    </select>
+                } else {
+                    <input
+                        id={col.Name}
+                        type="text"
+                        name={col.Name}
+                        value={row[col.Name]}
+                        title={col.Description}>
+                }
+            </div>
+        }
+    </section>
+    </form>
+}

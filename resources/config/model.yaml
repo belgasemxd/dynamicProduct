@@ -1,0 +1,98 @@
+Equipment:
+  - name: equipment_id
+    label: Equipment-ID
+    type: text
+    defaultValue: "UNKNOWN_ID"
+    description: Eindeutige Identifikationsnummer des Equipments
+
+  - name: name
+    label: Name / Bezeichnung
+    type: text
+    defaultValue: "Unnamed Equipment"
+    description: Klare Bezeichnung des Equipments
+
+  - name: category
+    label: Kategorie
+    type: dropdown
+    options: [Maschine, Messgerät, Förderband, Roboter, Werkzeug, Sonstiges]
+    defaultValue: "Sonstiges"
+    description: Art des Equipments
+
+  - name: model
+    label: Modellbezeichnung
+    type: text
+    defaultValue: "N/A"
+    description: Hersteller- oder Modellname
+
+  - name: serial_number
+    label: Seriennummer
+    type: text
+    defaultValue: "000000"
+    description: Seriennummer des Equipments
+
+  - name: manufacturer
+    label: Hersteller
+    type: text
+    defaultValue: "Unbekannt"
+    description: Name des Herstellers
+
+  - name: purchase_date
+    label: Kaufdatum
+    type: date
+    defaultValue: "1970-01-01"
+    description: Datum des Erwerbs
+
+  - name: installation_date
+    label: Installationsdatum
+    type: date
+    defaultValue: "1970-01-01"
+    description: Datum der Inbetriebnahme
+
+  - name: location
+    label: Standort
+    type: text
+    defaultValue: "Unbekannter Standort"
+    description: Standort oder Hallennummer
+
+  - name: status
+    label: Betriebsstatus
+    type: dropdown
+    options: [In Betrieb, Wartung, Außer Betrieb, Defekt, Reserviert]
+    defaultValue: "In Betrieb"
+    description: Aktueller Zustand des Equipments
+
+  - name: last_maintenance
+    label: Letzte Wartung
+    type: date
+    defaultValue: "1970-01-01"
+    description: Datum der letzten Wartung
+
+  - name: next_maintenance
+    label: Nächste Wartung
+    type: date
+    defaultValue: "1970-01-01"
+    description: Geplantes Wartungsdatum
+
+  - name: operating_hours
+    label: Betriebsstunden
+    type: number
+    defaultValue: 0
+    description: Gesamtbetriebsstunden
+
+  - name: calibration_required
+    label: Kalibrierung notwendig
+    type: boolean
+    defaultValue: false
+    description: Ob das Equipment regelmäßig kalibriert werden muss
+
+  - name: documentation_url
+    label: Dokumentations-URL
+    type: text
+    defaultValue: "N/A"
+    description: Link zur Betriebsanleitung oder technischen Dokumentation
+
+  - name: remarks
+    label: Anmerkungen
+    type: text
+    defaultValue: ""
+    description: Zusätzliche Hinweise oder Bemerkungen

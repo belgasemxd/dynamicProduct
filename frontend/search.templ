@@ -1,0 +1,30 @@
+package frontend
+
+templ Search() {
+<div class="search-section">
+    <input
+        id="search-input"
+        type="text"
+        name="q"
+        placeholder=""
+    />
+    <button id="search-btn">Suchen</button>
+    <button hx-get="/reset-search" hx-target="#content">Filter zurücksetzen</button>
+</div>
+
+<script>
+document.getElementById('search-btn').addEventListener('click', function() {
+    const input = document.getElementById('search-input');
+    const query = encodeURIComponent(input.value.trim());
+    if(query) {
+        fetch(`/search/${query}`)
+            .then(response => response.text())
+            .then(html => {
+                document.querySelector('#content').innerHTML = html;
+                htmx.process(document.querySelector('#content'));
+                input.value = '';
+            });
+    }
+});
+</script>
+}

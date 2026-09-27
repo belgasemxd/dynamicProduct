@@ -1,0 +1,39 @@
+package frontend
+import "github.com/belgasemxd/dynamicProduct/backend/model"
+
+templ Table(columns []model.TableColumn, rows []map[string]string, selected string) {
+<div id="table-wrapper" class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                for _, col := range columns {
+                    <th>{col.Label}</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            if len(rows) == 0 {
+                <tr>
+                    for range columns {
+                        <td></td>
+                    }
+                </tr>
+            } else {
+                for _, row := range rows {
+                    <tr
+                        class={ templ.KV("selected", row["id"] == selected) }
+                        hx-trigger="click"
+                        hx-get={ "/select/" + row["id"] }
+                        hx-target="#content"
+                        hx-swap="innerHTML"
+                    >
+                        for _, col := range columns {
+                            <td>{row[col.Name]}</td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+}

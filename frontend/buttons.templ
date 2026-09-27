@@ -1,0 +1,14 @@
+package frontend
+
+templ Buttons() {
+<div class="button-group">
+    <button type="submit" form="inputsForm">Speichern</button>
+    <button hx-delete="/delete" hx-target="#content" hx-swap="innerHTML">Löschen</button>
+    <button hx-get="/reset-form" hx-target="#content">Zurücksetzen</button>
+</div>
+<div class="button-group">
+    <form action="/migrate" method="get">
+        <button type="submit">Migrieren</button>
+    </form>
+</div>
+}

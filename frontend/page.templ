@@ -1,0 +1,28 @@
+package frontend
+
+import "github.com/belgasemxd/dynamicProduct/backend/model"
+
+templ Page(columns []model.TableColumn, rows []map[string]string, name string, selected string) {
+	<!DOCTYPE html>
+	<html lang="de">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>{name}</title>
+            <link rel="stylesheet" href="/static/css/style.css" />
+            <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+		</head>
+		<body>
+			<header>
+				<h1>{name}</h1>
+			</header>
+
+            @Search()
+            <div id="content">
+                @Table(columns, rows, selected)
+                @Inputs(columns)
+            </div>
+			@Buttons()
+		</body>
+	</html>
+}
